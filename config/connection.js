@@ -4,7 +4,7 @@ const state={
 }
 module.exports.connect=function(done){
     // const url = 'mongodb://localhost:27017'
-    const url = "mongodb://0.0.0.0:27017/";
+    const url = `mongodb+srv://Anshid:Adhilan%4012@cluster0.og4dblc.mongodb.net/?retryWrites=true&w=majority`;
     const dbname='luxury'
 
     mongoClient.connect(url,(err,data)=>{
