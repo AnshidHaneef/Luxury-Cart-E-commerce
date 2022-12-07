@@ -1,0 +1,55 @@
+    
+   
+
+
+    <div class="container">
+      <div class="row"> 
+         <span><h2 style="text-align: center;">  USER LIST </h2></span>
+  </div>
+    </div>
+   <section class="add-pdt"> 
+
+  <div class="container" style="width: 58rem;
+    margin-left: 15rem;">
+
+    <table id="adminmyTable" class="table table-bordered" >
+  <thead>
+    <tr class="table-active">
+      <th scope="col">No.</th>
+      <th scope="col">username</th>
+      <th scope="col">email</th>
+      <th style="text-align: center;" scope="col">Phone No.</th>
+      <th style="text-align: center;" scope="col">block</th>
+      
+    </tr>
+  </thead>
+    {{#each users}}
+  <tbody >
+    <tr style="">
+      <th  scope="row">{{increment @key}}</th>
+      <td style="text-align: center;">{{this.username}}</td>
+      <td style="text-align: center;">{{this.email}}</td>
+      <td style="text-align: center;">{{this.phone}}</td> 
+        <td > 
+            {{#if this.blockStatus}}
+                <a href="/admin/user-action/{{this._id}}/{{this.blockStatus}}" class="btn btn-danger"
+                onclick="return confirm('Are You Sure To Block')"
+                >block</a>
+            {{else }}
+            <a href="/admin/user-action/{{this._id}}/{{this.blockStatus}}" class="btn btn-success"
+                onclick="return confirm('Are You Sure To unBlock')"
+                >unblock</a>
+            {{/if}}                
+         </td>
+        </tr>
+    
+  </tbody>
+    {{/each}}
+</table>
+  </div>
+</section> 
+
+  
+
+
+  

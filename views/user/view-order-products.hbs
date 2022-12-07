@@ -1,0 +1,42 @@
+
+
+<section>
+
+                              <div class="row mt-2 ml-2"  >
+                    {{#each products}}
+                                     <div class="col-md-3">
+                   
+                              <div class="tab-content tab-content-carousel">
+                    <div class="tab-pane p-0 fade show active" id="products-featured-tab" role="tabpanel" aria-labelledby="products-featured-link">
+                            <div class="product product-2" style="border-radius: 1rem ; box-shadow: 2px 2px rgb(207, 193, 193); width: 24rem; margin: 1rem; ">
+
+                                        <img src="/assets/product-images/{{this.product._id}}.jpg" alt="Product image" style="height: 25rem; width: 28rem;" class="mt-2 ml-2">
+                                  <div class="product-body">
+                                    <div class="product-cat">
+                                       <h5>quantity : {{this.quantity}} </h5>
+                                        {{!-- <a href="#">Cameras & Camcorders</a> --}}
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title">{{this.product.name}}</h3>
+                                    <div class="product-price">
+                                       $ {{this.product.price}}
+                                    </div><!-- End .product-price -->
+                                    
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                    </div>
+               </div>
+
+                    </div>
+               </div>
+               </div>
+                    {{/each}}
+       </div>
+</div>
+
+     </section> 
+
+
+
+
+
+

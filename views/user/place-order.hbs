@@ -1,0 +1,365 @@
+<section>
+    <div class="container mt-5" style="height: 76rem; padding-left: 5rem; overflow: auto;">
+        <h3 style="padding-left: 15rem;">Add address</h3>
+
+
+
+        <form id="checkout-form" style=" width: 38rem;">
+            <div class="col-md-12"><label class="labels">Address</label><textarea type="text" class="form-control"
+                    id="useraddress" onkeyup="validateAddress()" value="{{this.adress}}" name="address"></textarea>
+                <span id="address-error"></span><br>
+            </div>
+            <div class="col-md-12"><label class="labels">City</label><input type="text" class="form-control"
+                    id="usercity" onkeyup="validateCity()" value="{{this.city}}" name="city">
+                <span id="city-error"></span><br>
+            </div>
+            <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control"
+                    id="userarea" value="{{this.area}}" onkeyup="validateArea()" name="area">
+                <span id="area-error"></span><br>
+            </div>
+            <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control"
+                    id="userpin" onkeyup="validatePincode()" value="{{this.pin}}" name="pin">
+                <span id="pincode-error"></span><br>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control"
+                        value="{{this.state}}" id="userstate" onkeyup="validateState()" name="state">
+                    <span id="state-error"></span><br>
+                </div>
+                <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control"
+                        id="usercountry" value="{{this.country}}" onkeyup="validatecountry()" name="country">
+                    <span id="country-error"></span><br>
+                </div>
+                <input type="text" name="userId" value="{{userrole._id}}" hidden>
+
+                {{!-- <button onclick="editAddress()" style="margin-top: 2rem;" class="btn btn-dark ml-3">Save
+                    Changes</button> --}}
+                {{!--
+        </form> --}}
+
+
+
+        {{!-- <form> --}}
+
+
+
+            <div class="container mt-5 ml-5 checkout border border-primary " style="
+                                                                                background-color: rgba(117, 107, 107, 0.178);
+                                                                                position: absolute;
+                                                                                left: 58rem;
+                                                                                top: 22.6rem;
+                                                                                width: 28rem;
+                                                                                padding-bottom: 1rem;
+                                                                                padding-top: 2rem;
+                                                                                border-radius: 5px; ">
+                <h5>{{#if coupon}}
+                    Amount:<strike><span>₹ {{totalAmount}}</span></strike>
+                    <h6> Discount : <span class="dis"> {{coupon.offer}} % </span></h6>
+
+                    <h4>Grand Total:₹ {{#off totalAmount coupon.offer}}{{/off}}</h4>
+
+                    {{else}}
+                    Amount : <span> {{totalAmount}} </span>
+
+                    <h6> Discount : <span class="dis"> </span></h6>
+
+                    <h4>Grand Total:{{totalAmount}} </h4>
+                    {{/if}}
+                    <hr>
+                    <div class="payment">
+                        <h6>Payment Method</h6>
+                        <label class="radio-inline mt-2">
+                            <label class="radio-inline">
+                                <input type="radio" name="Payment-method" value="COD" onclick="toggle()" required>COD
+                            </label><br><br>
+
+                            {{#if wallet}}
+                            <label class="radio-inline">
+                                <input type="radio" name="Payment-method" value="wallet" onclick="toggle()"
+                                    required>WALLET
+                            </label><br><br>
+
+                            {{else}}
+                            <input type="radio" disabled id="wallet" name="h" value="wallet">
+                            <label for="wallet">Wallet <small>(in sufficient balance)</small> </label><br><br>
+                            {{/if}}
+
+                            <input type="radio" name="Payment-method" value="paypal" onclick="toggle1()" required>paypal
+                        </label><br><br>
+                        <label class="radio-inline ">
+                            <input type="radio" name="Payment-method" value="Online-Payment" onclick="toggle()"
+                                required>Razorpay Payment
+                        </label><br><br>
+
+                        {{!-- {{#if coupon}}
+                        <input type="text" name="coupon" value={{coupon.off}} style="display: none;">
+                        {{/if}} --}}
+                        {{!-- <a onclick="userPlaceOrder()" class="float-rleft btn btn-primary clr" id="co">Checkout</a>
+                        --}}
+                        <div class="float-rleft btn btn-primary clr" id="co" onclick="checkout()">Checkout</div>
+                        <div id="paypal-button-container" style="margin-top: 1rem;" class="clr"></div>
+                    </div>
+            </div>
+    </div>
+    </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md4" style="padding-left: 95rem; margin-top: -64rem;">
+            <form action="/apply-coupon" method="post">
+                <label for="coupon">
+                    <h6>COUPON :</h6>
+                </label>
+                <input type="text" placeholder="Add coupon.." name="coupon"> <br>
+                <button type="submit" class="btn-info"
+                    style="width: 9rem;
+                                                                                                        color: black;
+                                                                                                        border-radius: 5px;
+                                                                                                        margin-left: 12rem;">APPLY</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="address" style=" position: absolute; left:62rem ; top: 14rem;">
+        <label for="address font-bold" style="font-weight: bold; overflow: auto; text-decoration: underline;
+                                            ">Select from saved addresses</label><br>
+        {{#each addresses}}
+        <input type="radio" id="html" name="address" value="{{this.address}},{{ this.city}},{{ this.pin}}"
+            onclick="selectAddress('{{this.address}}','{{this.city}}','{{this.area}}','{{this.pin}}','{{this.state}}','{{this.country}}')"
+            required>
+        {{this.address}}
+        {{this.city}}
+        {{this.pin}}
+        <br>
+        {{/each}}
+    </div>
+    </div>
+
+</section>
+
+
+
+<style>
+    .clr {
+        display: none;
+    }
+
+    .sft {
+        display: block;
+    }
+
+    .error {
+        font-weight: 500;
+        color: rgb(218, 18, 18);
+    }
+
+    .form-control {
+        border-radius: 5px;
+        border-color: darkgrey;
+    }
+
+    .dis {
+        padding-left: 1rem;
+        color: rgb(208, 47, 47);
+    }
+</style>
+
+
+
+<script>
+    function toggle() {
+        const list = document.getElementById("co").classList;
+        const list2 = document.getElementById("paypal-button-container").classList;
+        list.add("sft");
+        list2.remove("sft");
+
+    }
+    function toggle1() {
+        const list = document.getElementById("co").classList;
+        const list2 = document.getElementById("paypal-button-container").classList;
+        list2.add("sft");
+        list.remove("sft");
+    }
+    function checkout() {
+        if (validateAddress() && validateCity() && validateArea() && validateState() && validatePincode() && validatecountry()) {
+            $.ajax({
+                url: '/palce-order',
+                method: 'POST',
+                data: $('#checkout-form').serialize(),
+                success: (response) => {
+                    if (response.codSuccess) {
+                        location.href = '/checkout-success'
+                    } else {
+                        razorpayPayment(response)
+                    }
+                }
+            })
+        } else {
+             
+
+        }
+
+    }
+
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_EIM2cWPYiC5rpC",        // Enter the Key ID generated from the Dashboard
+            "amount": order.amount,                 // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Luxury Cart",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id,                //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+
+            "handler": function (response) {
+                verifyPayment(response, order)
+
+            },
+            "prefill": {
+                "name": "Anshid",
+                "email": "Anshid@gmail.com",
+                "contact": "9876543210"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+
+
+        rzp1.open();
+    }
+
+    function verifyPayment(payment, order) {
+        $.ajax({
+            url: '/verify-payment',
+            data: { payment, order },
+            method: 'post',
+            success: (response) => {
+                alert('payment succcessfull ')
+                if (response.status) {
+                    location.href = '/checkout-success '
+                }
+            }
+        })
+    }
+
+    function selectAddress(address, city, area, pin, state, country) {
+
+        document.getElementById('useraddress').value = address
+        document.getElementById('usercity').value = city
+        document.getElementById('userarea').value = area
+        document.getElementById('userpin').value = pin
+        document.getElementById('userstate').value = state
+        document.getElementById('usercountry').value = country
+    }
+
+
+
+    var addressError = document.getElementById('address-error');
+    var cityError = document.getElementById('city-error');
+    var areaError = document.getElementById('area-error');
+    var stateError = document.getElementById('state-error');
+    var pincodeError = document.getElementById('pincode-error');
+    var countryError = document.getElementById('country-error');
+
+    function validateAddress() {
+
+        var address = document.getElementById('useraddress').value.trim();
+
+        if (address.length == 0) {
+            addressError.innerHTML = 'Address is Required';
+            addressError.style.color = 'red'
+            return false;
+        }
+        addressError.innerHTML = 'valid';
+        addressError.style.color = 'green'
+        return true;
+    }
+    function validateCity() {
+        var town = document.getElementById('usercity').value.trim();
+        if (town.length == 0) {
+            cityError.innerHTML = 'Feild is Required';
+            cityError.style.color = 'red'
+            return false;
+        }
+        cityError.innerHTML = 'valid';
+        cityError.style.color = 'green'
+        return true;
+    }
+    function validateArea() {
+        var district = document.getElementById('userarea').value.trim();
+        if (district.length == 0) {
+            districtError.innerHTML = 'Feild is Required';
+            districtError.style.color = 'red'
+            return false;
+        }
+        areaError.innerHTML = 'valid';
+        areaError.style.color = 'green'
+        return true;
+    }
+    function validateState() {
+        var state = document.getElementById('userstate').value.trim();
+        if (state.length == 0) {
+            stateError.innerHTML = 'Feild is Required';
+            stateError.style.color = 'red'
+            return false;
+        }
+        stateError.innerHTML = 'valid';
+        stateError.style.color = 'green'
+        return true;
+    }
+    function validatePincode() {
+        var pincode = document.getElementById('userpin').value.trim();
+        if (pincode.length == 0) {
+            pincodeError.innerHTML = 'Feild is Required';
+            pincodeError.style.color = 'red'
+            return false;
+        }
+        if (!pincode.match(/^[0-9 ]*$/)) {
+            pincodeError.innerHTML = 'Write a FullName';
+            pincodeError.style.color = 'red'
+            return false;
+        }
+        if (pincode.length > 6) {
+            pincodeError.innerHTML = 'Enter correct name';
+            pincodeError.style.color = 'red'
+            return false;
+        }
+        pincodeError.innerHTML = 'valid';
+        pincodeError.style.color = 'green'
+        return true;
+    }
+    function validatecountry() {
+        var state = document.getElementById('usercountry').value.trim();
+        if (state.length == 0) {
+            countryError.innerHTML = 'Feild is Required';
+            countryError.style.color = 'red'
+            return false;
+        }
+        countryError.innerHTML = 'valid';
+        countryError.style.color = 'green'
+        return true;
+    }
+
+</script>
+
+
+
+
+
+
+
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AW4UDrhMu57ZfF1QgazPr7oAcOBC51ddQwVFEUfikfO9s5Jl-g-sgr937m5q1xNXhCOozmWkzQ_TmEtz&currency=USD"></script>
+<script src="/assets/js/paypal.js"></script>

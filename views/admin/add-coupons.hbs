@@ -1,0 +1,56 @@
+
+
+
+        <section>
+    <div class="row">
+      <h2 class="" style="text-align:center ;" >ADD COUPON</h2>
+    </div>
+  <div class="container mt-4">
+
+      <div class="col-md-6" style="margin-left:13rem ;"  >
+        
+        <form   id="add-coupon" >
+
+        <label class="mt-5" for=""><h5>COUPON NAME</h5></label>
+        <input type="text" placeholder="Coupon name" name="couponName" class="form-control" required>
+
+        
+
+        <label class="mt-5" for=""><h5>OFFER</h5></label>
+        <input type="text" placeholder="Offer for Coupon.." name="offer" class="form-control" required>
+
+
+
+        <button style="margin-left:10rem !important ;" type="submit" class="btn btn-success mt-4">SUBMIT</button>
+      </form>
+
+      </div>
+  </div>
+</section>
+
+<style>
+  .error{color: red;}
+</style>
+
+<script>
+
+    $("#add-coupon").submit((e)=>{
+        
+            e.preventDefault()
+            
+            $.ajax({
+                url:'/admin/add-coupon',
+                method:'POST',
+                data:$('#add-coupon').serialize(), 
+                success:(response)=>{   
+
+                  if(response.state){
+                    location.href='/admin/coupons'
+                  }else{
+                    alert('Coupon Already exist')
+                  }
+                }
+        })
+    })
+
+</script>

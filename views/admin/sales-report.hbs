@@ -1,0 +1,49 @@
+
+
+
+
+<section>
+<div class="rowHead" >
+    <h3 class="mt-3">SALES REPORT</h3>
+</div>
+
+    <div class="container" >
+        <table id="adminmyTable" class="table table-bordered">
+  <thead>
+    <tr class="table-info">
+      <th scope="col">NO.</th>
+      <th scope="col">DATE</th>
+      <th scope="col">AMOUNT</th>
+      <th scope="col">PAYMENT</th>
+    </tr>
+  </thead>
+ {{#each orders}}
+  <tbody>
+    <tr  class="table-danger">
+      <th scope="row">{{increment @index}}</th>
+      <td>{{this.date}}</td>
+      <td>{{this.totalAmount}}</td>
+      <td>{{this.paymentMethod}}</td>
+    </tr>
+  </tbody>
+{{/each}}
+</table>
+    </div>
+</section>
+
+
+
+
+<style>
+
+.rowHead{
+    margin-left: 33rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+.container{
+    margin-left: 16rem;
+    width: 50rem;
+}
+
+</style>

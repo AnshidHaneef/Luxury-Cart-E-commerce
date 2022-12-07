@@ -1,0 +1,167 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+<section>
+
+  {{#if orders}}
+    <div class="container" style="    width: 110rem;
+                                      margin: 8rem;">
+        <table id="myTable" class=" table-striped ">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Date</th>
+      <th scope="col">Adress</th>
+      <th scope="col">Amount </th>
+      <th scope="col">Status</th>
+      <th scope="col">Payment</th>
+      <th scope="col">Views</th>
+      {{!-- <th></th> --}}
+    </tr>
+
+  </thead>
+  <tbody>
+        {{#each orders}}
+
+    <tr>
+      <th scope="row">{{increment @key}}</th>
+      <td>{{this.date}}</td>
+      <td>{{this.deliveryDetails.address}}</td>
+      <td>{{this.totalAmount}}</td>
+      <td>{{this.status}}</td>
+      <td>{{this.paymentMethod}}</td>
+      <td>
+        <p>
+          <a href="/view-order-products/{{this._id}}" class="btn btn-dark" style="border-radius:4px; width:2rem ;float: left;" >view Products</a><br>   
+        {{#ifCond status 'cancelled'}}  
+              <h6 style="text-decoration: dotted; color: red;" class="pl-5 pt-3" >Cancelled</h6>
+        {{else}}
+          <a  onclick="cancelOrder('{{this._id}}')"><i class="fa fa-ban" style="
+                font-size: 3rem;
+                float: left;
+                padding-left: 7rem;
+                color: #c90606;" ></i></a>
+       {{/ifCond}}
+        </p> 
+          {{#ifCond status  'pending'}}
+              <button onclick="retryPayment('{{this._id}}',{{this.totalAmount}},'{{this.paymentMethod}}')" class="btn btn-success">pay</button>
+        {{/ifCond}}
+
+      </td>
+      
+    </tr>
+      {{/each}}
+  </tbody>
+</table>
+    </div>
+{{else}}
+         <div class="container" >
+           <div class="img-fluid">
+            <span class=" text-center">
+                <h3 class="font-bold float-left" style="position: absolute; margin-top: 2rem; margin-left: 50rem;"> Order is Empty ! ! !</h3>
+            </span>
+              <img src="/assets/images/Luxury/empty-cart" alt="" style="width: 50%;
+                                                             margin: 5rem;
+                                                           border-radius: 5px;
+                                                            margin-left: 31rem;">
+           </div>
+        </div>
+
+    {{/if}}
+</section>
+
+ 
+
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+
+
+function cancelOrder(orderId){
+  swal({
+        title: "Are you sure?",
+        text: "Cancel this order",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) { 
+           window.location.href=`/cancel-order/${orderId}`
+        }  
+     });
+}
+
+
+
+ function retryPayment(orderId,totalAmount,paymentMethod){
+  alert()
+                            $.ajax({
+                                url:'/retryPayment',
+                                data:{
+                                    order:orderId,
+                                totalAmount:totalAmount,
+                                paymentMethod:paymentMethod
+                                },
+                           
+                            method:'post',
+                            success:(response)=>{
+                              console.log(response)
+                                if(response.payment){
+                                    razorpayPayment(response)
+                                }
+                            }
+                        })
+ }
+
+
+
+
+
+ function razorpayPayment(order){
+        var options = {
+    "key": "rzp_test_EIM2cWPYiC5rpC",        // Enter the Key ID generated from the Dashboard
+    "amount": order.amount,                 // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Luxury Cart",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": order.id,                //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                                        {{!-- "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/"--}}
+     "handler": function (response){
+        verifyPayment(response,order)
+
+    },
+    "prefill": {
+        "name": "Anshid",
+        "email": "Anshid@gmail.com",
+        "contact": "9876543210"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+      }
+    };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+ }
+
+function verifyPayment(payment,order){
+    $.ajax({
+        url:'/verify-payment',
+        data:{payment,order },        
+    method:'post',
+    success:(response)=>{
+     {{!-- alert('payment succcessfull ') --}}
+        if(response.status){
+            location.href='/checkout-success '
+        }
+    }
+ })
+}
+
+
+</script>

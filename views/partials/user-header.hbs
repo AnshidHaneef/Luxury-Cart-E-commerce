@@ -1,0 +1,128 @@
+
+        {{#if homeStatus}}
+        <header class="header header-7">
+    <div class="header-top " style="padding:1rem ;">
+            <div class="container-fluid" >
+                <div class="header-right">
+                     <ul class="top-menu">
+                        <li>
+                            <a href="#">Links</a>
+                        <ul>
+                               
+                                <li><a href="#"><i
+                                            class="icon-heart-o"></i>My Wishlist
+                                        </a></li>
+                                <li><a href="/">Contact Us</a></li>
+                                {{#if hello}} 
+
+                                              {{else}}
+                                                <li>
+                                                    <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" >
+                                                        {{#if userrole}}
+                                                        
+                                                        {{userrole.username}}
+                                                        {{else}}
+                                                    Account
+                                                    {{/if}}
+                                                    
+                                                    </button>
+
+                                                    <div class="dropdown-menu">
+                                                      {{#if userrole}}
+                                                        <a class="dropdown-item" style="font-size:medium;" href="/logout">logout</a>
+                                                    {{else }}
+                                                         <a class="dropdown-item" style="font-size:medium;" href="/login">login</a>
+                                                    {{/if}}
+                                                    </div>
+                                                </li> 
+                                {{/if}}             
+                                                         
+                                </ul>
+                            </li>
+                        </ul><!-- End .top-menu -->
+                </div><!-- End .header-right -->
+            </div><!-- End .container-fluid -->
+        </div>
+</header>
+
+        {{else}}
+<header class="header header-7">
+    <div class="header-top " style="padding:1rem ;">
+            <div class="container-fluid" >
+                {{#if userrole}}
+                                    <div class="header-left">
+                                        <ul style="    font-size: 18px;
+                                                    display: flex;
+                                                    gap: 35px;
+                                                    padding-left: 6rem; ">
+                                            <li>
+                                                <a href="/" class="nav-text">HOME</a>
+                                            </li>
+                                            <li>
+                                                <a href="/products" class="nav-text">PRODUCTS</a>
+                                            </li>
+                                            <li>
+                                                <a href="/cart" class="nav-text">CART<span style="margin: 0.4rem;">{{cartCount}}</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="/orders" class="nav-text">ORDERS</a>
+                                            </li>
+                                            <li>
+                                                <a href="/categories" class="nav-text">CATEGORIES</a>
+                                            </li>
+                                        </ul>
+                                    </div>                                        
+                {{/if}}
+                <div class="header-right">
+                     <ul class="top-menu">
+                        <li>
+                            <a href="#">Links</a>
+                        <ul>
+                               
+                                <li><a href="#"><i
+                                            class="icon-heart-o"></i>My Wishlist
+                                        </a></li>
+                                <li><a href="/">Contact Us</a></li>
+                                              
+                                                <li>
+                                                    <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" >
+                                                        {{#if userrole}}
+                                                        
+                                                        {{userrole.username}}
+                                                        {{else}}
+                                                    Account
+                                                    {{/if}}
+                                                    
+                                                    </button>
+
+                                                    <div class="dropdown-menu">
+                                                      {{#if userrole}}
+                                                        <a class="dropdown-item" style="font-size:medium;" href="/logout">logout</a>
+                                                    {{else }}
+                                                         <a class="dropdown-item" style="font-size:medium;" href="/login">login</a>
+                                                    {{/if}}
+                                                    </div>
+                                                </li> 
+                                </ul>
+                            </li>
+                        </ul><!-- End .top-menu -->
+                </div><!-- End .header-right -->
+            </div><!-- End .container-fluid -->
+        </div>
+</header>
+{{/if}}
+
+
+
+
+<style>
+    .nav-text{
+        font-size:15px;
+        letter-spacing: 0.1rem;
+        font-weight: 550;
+        font-family: sans-serif;
+    }
+</style>
+    

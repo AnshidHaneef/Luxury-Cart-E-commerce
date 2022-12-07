@@ -1,0 +1,55 @@
+
+
+
+     <section>
+               <div class="row mt-2 ml-2"  >
+                    {{#each products}}
+                    <div class="col-md-3">
+                              <div class="tab-content tab-content-carousel">
+                    <div class="tab-pane p-0 fade show active" id="products-featured-tab" role="tabpanel" aria-labelledby="products-featured-link">
+                            <div class="product product-2" style="border-radius: 1rem ; box-shadow: 2px 2px rgb(207, 193, 193);   ">
+                                <figure class="product-media">
+                                    <a  onclick="location.href='/view_product/{{this._id}}'">
+                                        <img src="/assets/product-images/{{this._id}}.jpg" alt="Product image" style="height: 30rem;" class="product-image">
+                                    </a>
+
+                                    
+
+                                    <div class="product-action product-action-dark">
+                        {{#if ../userrole}}
+                          <a href="#" onclick="addToCart('{{this._id}}')"  class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+
+                        {{else}}
+                         <a href="#" onclick="redirectToHome('{{this.product._id}}')" class="btn-product btn-cart" style="color: rgb(255, 255, 255);">Add to Cart</a>
+                        {{/if}}
+                                   
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                       <h5>{{this.name}} </h5>
+                                        {{!-- <a href="#">Cameras & Camcorders</a> --}}
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title">{{this.descreption}}</h3>
+                                    <div class="product-price">
+                                       {{this.price}}
+                                    </div><!-- End .product-price -->
+                                    
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                    </div>
+               </div>
+
+                    </div>
+                    {{/each}}
+               </div>
+          </div>
+
+ 
+
+     </section>
+
+
+
+

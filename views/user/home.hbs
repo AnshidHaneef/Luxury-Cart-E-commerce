@@ -1,0 +1,266 @@
+
+<header class="header header-7">
+    <!-- End .header-top -->
+
+    <div class="header-middle sticky-header">
+        <div class="container-fluid" style="margin:-1rem ;">
+            <div class="header-left">
+                <button class="mobile-menu-toggler">
+                    <span class="sr-only"></span>
+                    <i class="icon-bars"></i>
+                </button>
+
+                <a href="/" class="logo">
+                    <img src="/assets/images/Luxury/SHOP LUXURY sm crop.png"
+                        alt=" Logo" width="105" height="25">
+                </a>
+
+                <nav class="main-nav">
+                    <ul class="menu sf-arrows">
+                        <li>
+                            <a href="/products" class="sf-with-ul">PRODUCTS</a>
+                        </li>
+                       
+                        {{!-- <li class="show">
+                            <a href="/categories" class="sf-with-ul">CATEGORIES</a>
+                        </li> --}}
+
+                        {{#if userrole}}
+                        <li>
+                            <a href="/cart" class="sf-with-ul">Cart <span
+                                    style="margin: 0.4rem;" class="badge
+                                    badge-success">{{cartCount}}</span></a>
+                        </li>
+                        <li>
+                            <a href="/orders" class="sf-with-ul">Orders</a>
+                        </li>
+
+                        {{/if}}
+
+                            <li>
+                                    <a href="#" class="sf-with-ul">CATEGORIES</a>
+
+                                    <ul>
+                                        {{#each category}}
+                                        <li><a href="/list_category_products/{{this._id}}"><strong>{{this.categoryName}}</strong></a></li>
+                                        {{/each}}
+                                        
+                                    </ul>
+                                </li>
+
+
+
+
+
+                    </ul><!-- End .menu -->
+                </nav><!-- End .main-nav -->
+            </div><!-- End .header-left -->
+
+            <div class="header-right">
+               
+
+                <div class="dropdown cart-dropdown">
+                    <a href="/user-profile" class="dropdown-toggle" role="button"
+                        {{!-- data-toggle="dropdown" aria-haspopup="true" --}}
+                        aria-expanded="false" data-display="static">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </a>
+
+
+                </div><!-- End .cart-dropdown -->
+            </div><!-- End .header-right -->
+        </div><!-- End .container-fluid -->
+    </div><!-- End .header-middle -->
+</header>
+
+
+
+
+<div class="page-wrapper">
+    <!-- End .header -->
+
+    <main class="main">
+        <div class="container-fluid pt-2">
+
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="banner banner-overlay text-white">
+                        <a href="#">
+                            <img
+                                src="/assets/images/Luxury/crop.jpg"
+                                alt="Banner">
+                        </a>
+
+                        <div class="banner-content banner-content-right">
+
+                            <a href="/categories" class="btn underline btn-outline-white-3
+                                banner-link">ALL CATEGORY</a>
+                        </div><!-- End .banner-content -->
+                    </div><!-- End .banner -->
+                </div><!-- End .col-lg-4 -->
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="banner banner-overlay color-grey">
+                        <a href="#">
+                            <img
+                                src="/assets/images/Luxury/men.crop.jpg"
+                                {{!--
+                                src="assets/images/demos/demo-7/banners/banner-4.jpg"
+                                --}}
+                                alt="Banner">
+                        </a>
+
+                        <div class="banner-content">
+                            <!-- End .banner-title -->
+                            <a href="/products" class="btn underline
+                                banner-link"> MEN </a>
+                        </div><!-- End .banner-content -->
+                    </div><!-- End .banner -->
+                </div><!-- End .col-lg-4 -->
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="banner banner-overlay text-white">
+                        <a href="/products">
+                            <img
+                                src="assets/images/demos/demo-7/banners/banner-5.jpg"
+                                alt="Banner">
+                        </a>
+
+                        <div class="banner-content banner-content-right mr">
+                            <!-- End .banner-title -->
+                            <a href="#" class="btn underline btn-outline-white-3
+                                banner-link"> WOMEN </a>
+                        </div><!-- End .banner-content -->
+                    </div><!-- End .banner -->
+                </div><!-- End .col-lg-4 -->
+            </div><!-- End .row -->
+   
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="banner banner-big banner-overlay">
+                        <a href="#">
+                            <img
+                                src="assets/images/demos/demo-7/banners/banner-1.jpg"
+                                alt="Banner">
+                        </a>
+
+                        <div class="banner-content banner-content-center">
+                            <h3 class="banner-subtitle text-white"><a href="#">
+                                </a></h3><!-- End .banner-subtitle -->
+                            <h2 class="banner-title text-white"><a href="#">Shop
+                                    Women's</a></h2><!-- End .banner-title -->
+                            <a href="#" class="btn underline"><span>Discover Now</span></a>
+                        </div><!-- End .banner-content -->
+                    </div><!-- End .banner -->
+                </div><!-- End .col-lg-6 -->
+
+                <div class="col-lg-6">
+                    <div class="banner banner-big banner-overlay">
+                        <a href="#">
+                            <img
+                                src="assets/images/demos/demo-7/banners/banner-2.jpg"
+                                alt="Banner">
+                        </a>
+
+                        <div class="banner-content banner-content-center">
+                            <h3 class="banner-subtitle text-white"><a href="#">
+                                </a></h3><!-- End .banner-subtitle -->
+                            <h2 class="banner-title text-white"><a href="#">Shop
+                                    Men's</a></h2><!-- End .banner-title -->
+                            <a href="#" class="btn underline"><span>Discover Now</span></a>
+                        </div><!-- End .banner-content -->
+                    </div><!-- End .banner -->
+                </div><!-- End .col-lg-6 -->
+            </div>
+            <!-- End .row -->
+        </div><!-- End .container-fluid -->
+
+
+        <div class="container">
+            <h3 style="position: absolute; font-family: monospace; color: aliceblue; letter-spacing: 1px;" class="pt-5 pl-5">FASHION</h3>
+            <img src="/assets/images/Luxury/breadcrumb-bg back.jpg" alt="">
+          </div>
+      
+
+
+
+        <div class="container-fluid">
+
+
+            <hr class="mt-0 mb-6">
+
+            <div class="blog-posts mb-4">
+                <h2 class="title text-center mb-3">SIMILAR PRODUCTS</h2><!-- End .title text-center -->
+                <div class="owl-carousel owl-simple mb-2" data-toggle="owl"
+                    data-owl-options='{
+                    "nav": false,
+                    "dots": true,
+                    "items": 3,
+                    "margin": 20,
+                    "loop": false,
+                    "responsive": {
+                    "0": {
+                    "items":1
+                    },
+                    "520": {
+                    "items":2
+                    },
+                    "768": {
+                    "items":3
+                    },
+                    "992": {
+                    "items":4
+                    }
+                    }
+                    }'>
+                    <article class="entry">
+                        <figure class="entry-media">
+                            <a href="single.html">
+                                <img
+                                    src="assets/images/demos/demo-7/blog/post-1.jpg"
+                                    alt="image desc">
+                            </a>
+                        </figure><!-- End .entry-media -->
+
+                        <div class="entry-body text-center">
+                            <div class="entry-meta">
+                            </div><!-- End .entry-meta -->
+
+                            <h3 class="entry-title">
+                                Coming Soon..
+                            </h3><!-- End .entry-title -->
+                        </div><!-- End .entry-body -->
+                    </article><!-- End .entry -->
+
+                                <article class="entry">
+                                    <figure class="entry-media">
+                                        <a href="single.html">
+                                            <img
+                                                src="assets/images/demos/demo-7/blog/post-2.jpg"
+                                                alt="image desc">
+                                        </a>
+                                    </figure><!-- End .entry-media -->
+
+                                    <div class="entry-body text-center">
+                                        <div class="entry-meta">
+                                        </div><!-- End .entry-meta -->
+                                        <h3 class="entry-title">
+                                                Coming Soon..
+                                            </h3>
+                                        </div><!-- End .entry-content -->
+                                    </div><!-- End .entry-body -->
+                                </article><!-- End .entry -->
+
+                   <!-- End .entry -->
+                </div><!-- End .owl-carousel -->
+            </div><!-- End .blog-posts -->
+        </div><!-- End .container-fluid -->
+    </main><!-- End .main -->
+
+
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->

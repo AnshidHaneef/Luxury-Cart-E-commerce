@@ -1,0 +1,100 @@
+
+<section class="profile mt-5" style="">
+   <div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+            <i class="fa fa-plus" aria-hidden="true" style="position: absolute;
+    top: 14.3rem;
+    color: green;
+    background: white;
+    border-radius: 100%;
+    font-size: 1.5rem;
+    left: 11rem;"></i>
+            <span class="font-weight-bold">{{user.username}}</span><span class="text-black-50">{{user.email}}</span><span>{{user.phone}} </span></div>
+        {{!-- {{#if wallet}} --}}
+           <div style="padding-left: 8rem; padding-bottom: 2rem;">  <span  style="border:1px dashed black ; padding: 5px 15px ;"> WALLET : {{user.wallet}} </span></div>
+        {{!-- {{/if}}    --}}
+                {{!-- <div class="mt-2 text-center"><a href="/add-new-adress" class="btn btn-info" type="submit" style="margin-right: 2rem;">ADD ADRESS</a></div> --}}
+        </div>
+
+
+        
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <form class="UF" action="/update-profile" method="post">
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Name</label><input type="" value="{{user.username}}" class="form-control" placeholder="name"  name="name" disabled></div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value="{{user.phone}}" name="phone" disabled></div>
+                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value="{{user.email}}" name="email" disabled></div>
+                </div>
+               
+                {{!-- <div class="mt-2 text-center"><button class="btn btn-dark" type="submit" style="margin-right: 12rem;">Save Profile</button></div> --}}
+            </div>
+        </div>
+        </form>
+         
+                {{!-- <div class="mt-2 text-center"><a href="" class="btn btn-dark" type="submit" style="margin-right: 12rem;">Add Adress</a></div> --}}
+
+       
+        <div class="col-md-4">
+
+
+                        {{!-- <h4 class="text-left pl-3 mt-5">Change Password</h4>
+                            
+                    <form class="SUF" name="SUF" action="/change-password" method="post">
+                    <label for="password" class="labels">Old Password</label>
+                    <input type="password" name="password" placeholder="Password..." id="old password" class="form-control">
+                    <label for="confirmPassword" class="labels">New Password</label>
+                    <input type="password" name="newPassword" placeholder="new password..." class="form-control" id="password2">
+                    <label for="newPassword" class="labels">Re-enter New Password</label>
+                    <input type="password" name="confirmPassword2" placeholder="new password..." class="form-control">
+                    <br>
+                    <button class="btn btn-dark mt-2 ml-5" type="submit">Change Password</button>
+            
+                    </form> --}}
+
+
+                    <div class="row">
+            <div class="col">
+                 <form  action="/add-address " class=""   style=" width: 38rem;" id="add-address"  method="POST" >
+            <h4 class=" pt-2">ADD ADDRESS</h4>
+                             
+               <div class="col-md-12"><label class="labels">Address</label><textarea type="text" class="form-control" placeholder="enter address" value="" name="address"></textarea></div>
+                    
+                    <div class="col-md-12"><label class="labels">City</label><input type="text" class="form-control" placeholder="enter city" value="" name="city"></div>
+                     <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter area" value="" name="area"></div>
+                    <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter post code" value="" name="pin"></div>
+                     <div class="row mt-3">
+                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state" name="state"></div>
+                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value="" name="country"></div>  
+                    </div>
+                    <input type="text" name="userId" value="{{userrole._id}}"   hidden>
+                  
+             <button type="submit"  style="margin-top: 1.5rem; margin-bottom: 1rem; " class="btn btn-dark ml-3">Add address</button>
+                </form>
+
+            </div>
+        </div>  
+               
+                
+
+        </div>   
+                    
+    </div>
+</div>
+</div>
+</div>
+</section>
+
+
+<style>
+.error{
+    color: red;
+}
+</style>

@@ -1,0 +1,58 @@
+
+
+ <div class="container">
+   <div class="row"> 
+         <span><h2 style="text-align: center;">  VIEW PRODUCTS </h2></span>
+  </div>
+ </div>
+
+   <section class="add-pdt"> 
+  <div class="container" style="">
+      <a href="/admin/add-products" type="button" class="btn btn-success" 
+      style="    margin-left: 58rem;
+               margin-bottom: 0.5rem;"
+      >ADD PRODUCTS</a>
+</div>
+
+  <div class="container"style="width: 58rem;
+    margin-left: 15rem;">
+
+    <table id="adminmyTable" class="table table-hover" >
+  <thead>
+    <tr class="table-active">
+      <th scope="col">No.</th>
+      <th scope="col">Name</th>
+      <th scope="col">ctaegory</th>
+      <th style="text-align: center;" scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">  Image</th>
+      <th scope="col">     </th>
+    </tr>
+  </thead>
+    {{#each products}}
+  <tbody>
+    <tr style="">
+      <th  scope="row">{{increment @key}}</th>
+      <td style="text-align: center;">{{this.name}}</td>
+
+      <td style="text-align: center;">{{this.category.categoryName}}</td>
+ 
+      <td style="text-align: center;">{{this.descreption}}</td> 
+      <td style="text-align: center;">{{this.price}}</td>
+      <td style="text-align: center;"><img style="width:50px; height:50px;" src="/assets/product-images/{{this._id}}.jpg" alt=""></td>
+      <td>
+        <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>
+        <a href="/admin/delete-product/{{this._id}}"  class="btn btn-danger" onclick=" return confirm('Are You Sure Want to delete {{this.name}}')">Delete</a>
+      </td>
+    </tr> 
+  </tbody>
+    {{/each}}
+</table>
+  </div>
+</section> 
+
+
+
+
+
+  

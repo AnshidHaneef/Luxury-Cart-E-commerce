@@ -1,0 +1,57 @@
+
+
+
+<div class="container">
+  <div class="row">
+    <span>
+      <h2 style="text-align: center;"> COUPONS </h2>
+    </span>
+  </div>
+</div>
+
+<section class="add-pdt">
+  <div>
+    <a href="/admin/add-coupons" type="button" class="btn btn-success" style="    margin-left: 61rem;
+               margin-bottom: 0.5rem;">ADD COUPONS</a>
+  </div>
+
+  <div class="container" style="width: 58rem;
+    margin-left: 15rem;">
+
+    <table id="adminmyTable" class="table table-bordered">
+      <thead>
+        <tr class="table-active">
+          <th scope="col">No.</th>
+          <th scope="col">COUPON</th>
+          <th scope="col">Offer</th>
+          <th scope="col">options</th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        {{#each coupons}}
+        <tr style="">
+          <th scope="row">{{increment @key}}</th>
+          <td>{{this.couponName}}</td>
+          <td>{{this.offer}}%</td>
+          <td>
+            {{!-- <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger"
+              onclick=" return confirm('Are You Sure Want to delete {{this.name}}')">Delete</a> --}}
+            <a href="/admin/delete-coupon?id={{this._id}}" onclick="return confirm('do you  want to remove Coupon')"><i
+                class="fa fa-trash" style="
+                margin-left: 2rem;
+                font-size: 1.75rem;
+                color: rgb(186, 18, 18);
+                padding: 0px;
+                margin-top: -8px;
+                "></i></a>
+
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+
+    </table>
+  </div>
+</section>

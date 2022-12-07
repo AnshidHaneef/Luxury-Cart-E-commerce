@@ -1,0 +1,70 @@
+    
+<script src="/assets/js/zoomsl.js"></script>
+
+
+
+
+<section>
+        <div class="container mt-5 mb-5">
+    <div class="card">
+        <div class="row g-0">
+            <div class="col-md-6 border-end">
+                <div class="d-flex flex-column justify-content-center">
+                    <div class="main_image" id=""> <img id="zoom" src="../../banners/{{product._id}}.jpg" 
+                            width="350"> </div>
+                    <div class="thumbnail_images">
+                        <ul id="thumbnail">
+                            <li><img  onclick="changeImage(this)" src="../../assets/product-images/{{product._id}}.jpg" width="70"></li>
+                            <li><img  onclick="changeImage(this)" src="../../assets/product-images/{{product._id}}0.jpg" width="70"></li>
+                            <li><img  onclick="changeImage(this)" src="../../assets/product-images/{{product._id}}1.jpg" width="70"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-md-6">
+                <div class="p-3 right-side" style=" margin-top: 11rem;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2>{{product.name}}</h> <span class="close"><i class="bi bi-x"></i></span>
+                    </div>
+                    <div class="mt-2 pr-3 content">
+                        <h5>{{product.descreption}}</h5>
+                    </div>
+                    <h3>₹  {{product.price}}</h3>
+                    <div class="ratings d-flex flex-row align-items-center">
+                        <div class="d-flex flex-row"> <i class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i
+                                class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i class='bx bx-star'></i> </div>
+                        {{!-- <span>441 reviews</span> --}}
+                    </div>
+                                   
+                    <div class="buttons d-flex flex-row mt-5 gap-3"> 
+                        {{#if userrole}} <a onclick="addToCart('{{this.product._id}}')" class="btn btn-dark" style="color: #fff;">Add to Cart</a> 
+                        {{else}} <a onclick="redirectToHome('{{this.product._id}}')" class="btn btn-dark" style="color: rgb(255, 255, 255);">Add to Cart</a>
+                        {{/if}}
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+
+
+
+
+<script>
+    $(document).ready(function(){
+    $('.thumbnail_images img').click(function(){
+        var image = $(this).attr('src');
+        $('.main_image img').attr('src' , image)
+    })
+        $('#zoom').imagezoomsl({
+
+      zoomrange: [4, 4]
+        });
+
+
+})
+</script>
